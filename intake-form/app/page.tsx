@@ -8,6 +8,7 @@ export default function IntakeForm() {
   const router = useRouter();
   const [formData, setFormData] = useState<Record<string, any>>({});
   const [files, setFiles] = useState<Record<string, File[]>>({});
+  const [otherText, setOtherText] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -50,6 +51,7 @@ export default function IntakeForm() {
         client_name: projectInfo.clientName,
         submitted_at: new Date().toISOString(),
         responses: formData,
+        other_responses: otherText,
         files_uploaded: Object.keys(files).map(key => ({
           question_id: key,
           file_count: files[key].length,
@@ -111,20 +113,44 @@ export default function IntakeForm() {
         );
 
       case 'select':
+        const selectHasOther = question.options?.includes('Other');
+        const selectOtherSelected = formData[question.id] === 'Other';
+
         return (
-          <select {...commonProps}>
-            <option value="">Select an option...</option>
-            {question.options?.map(option => (
-              <option key={option} value={option}>{option}</option>
-            ))}
-          </select>
+          <div className="space-y-2">
+            <select {...commonProps}>
+              <option value="">Select an option...</option>
+              {question.options?.map(option => (
+                <option key={option} value={option}>{option}</option>
+              ))}
+            </select>
+
+            {/* Show text field if "Other" is selected */}
+            {selectHasOther && selectOtherSelected && (
+              <input
+                type="text"
+                placeholder="Please specify..."
+                value={otherText[question.id] || ''}
+                onChange={(e) => {
+                  setOtherText(prev => ({
+                    ...prev,
+                    [question.id]: e.target.value
+                  }));
+                }}
+                className="form-input"
+              />
+            )}
+          </div>
         );
 
       case 'multiselect':
+        const hasOther = question.options?.includes('Other');
+        const isOtherSelected = formData[question.id]?.includes('Other');
+
         return (
-          <div className="space-y-2">
+          <div className="space-y-3">
             {question.options?.map(option => (
-              <label key={option} className="flex items-center space-x-2 cursor-pointer">
+              <label key={option} className="flex items-center space-x-3 cursor-pointer hover:bg-[var(--surface)]/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   checked={formData[question.id]?.includes(option) || false}
@@ -135,11 +161,29 @@ export default function IntakeForm() {
                       : current.filter((v: string) => v !== option);
                     handleInputChange(question.id, updated);
                   }}
-                  className="w-4 h-4 rounded border-gray-600 text-[var(--primary)] focus:ring-[var(--primary)]"
+                  className="w-5 h-5 rounded border-[var(--border)] text-[var(--accent)] focus:ring-[var(--accent)] focus:ring-offset-[var(--background)]"
                 />
-                <span className="text-[var(--text)]">{option}</span>
+                <span className="text-[var(--text)] text-base">{option}</span>
               </label>
             ))}
+
+            {/* Show text field if "Other" is selected */}
+            {hasOther && isOtherSelected && (
+              <div className="ml-8 mt-2">
+                <input
+                  type="text"
+                  placeholder="Please specify..."
+                  value={otherText[question.id] || ''}
+                  onChange={(e) => {
+                    setOtherText(prev => ({
+                      ...prev,
+                      [question.id]: e.target.value
+                    }));
+                  }}
+                  className="form-input"
+                />
+              </div>
+            )}
           </div>
         );
 
@@ -193,14 +237,14 @@ export default function IntakeForm() {
           <div key={section} className="section-card">
             <h3 className="section-title">{section}</h3>
 
-            <div className="space-y-6">
+            <div className="space-y-8">
               {questions
                 .filter(q => q.section === section)
                 .map((question, questionIndex) => (
-                  <div key={question.id} className="space-y-2">
+                  <div key={question.id} className="space-y-3 pb-6 border-b border-[var(--border)]/30 last:border-b-0 last:pb-0">
                     <label htmlFor={question.id} className="form-label">
                       {question.question}
-                      {question.required && <span className="text-[var(--primary)] ml-1">*</span>}
+                      {question.required && <span className="text-[var(--accent)] ml-1">*</span>}
                     </label>
 
                     {renderQuestion(question)}

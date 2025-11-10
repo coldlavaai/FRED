@@ -1,9 +1,9 @@
 export default function ThankYou() {
   return (
     <div className="section-card text-center">
-      <div className="inline-block p-4 bg-[var(--primary)]/10 rounded-full mb-6">
+      <div className="inline-block p-4 bg-[var(--accent)]/10 rounded-full mb-6">
         <svg
-          className="w-16 h-16 text-[var(--primary)]"
+          className="w-16 h-16 text-[var(--accent)]"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -29,19 +29,19 @@ export default function ThankYou() {
         <h2 className="text-xl font-semibold text-white mb-3">What happens next?</h2>
         <ul className="text-left text-[var(--text-muted)] space-y-2">
           <li className="flex items-start">
-            <span className="text-[var(--primary)] mr-2">•</span>
+            <span className="text-[var(--accent)] mr-2">•</span>
             We'll review your responses within 2-3 business days
           </li>
           <li className="flex items-start">
-            <span className="text-[var(--primary)] mr-2">•</span>
+            <span className="text-[var(--accent)] mr-2">•</span>
             We'll reach out if we need any clarifications
           </li>
           <li className="flex items-start">
-            <span className="text-[var(--primary)] mr-2">•</span>
+            <span className="text-[var(--accent)] mr-2">•</span>
             You'll receive a detailed proposal with pricing and timeline
           </li>
           <li className="flex items-start">
-            <span className="text-[var(--primary)] mr-2">•</span>
+            <span className="text-[var(--accent)] mr-2">•</span>
             We can schedule a call to discuss the proposal
           </li>
         </ul>
@@ -51,7 +51,7 @@ export default function ThankYou() {
         <p className="mb-2">Have questions in the meantime?</p>
         <a
           href="mailto:oliver@coldlava.ai"
-          className="text-[var(--primary)] hover:underline font-semibold"
+          className="text-[var(--accent)] hover:underline font-semibold transition-colors"
         >
           oliver@coldlava.ai
         </a>
@@ -60,7 +60,7 @@ export default function ThankYou() {
       <div className="mt-8">
         <a
           href="https://coldlava.ai"
-          className="text-[var(--primary)] hover:underline"
+          className="text-[var(--accent)] hover:underline transition-colors"
         >
           ← Back to Cold Lava website
         </a>
