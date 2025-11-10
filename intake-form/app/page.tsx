@@ -115,6 +115,8 @@ export default function IntakeForm() {
       case 'select':
         const selectHasOther = question.options?.includes('Other');
         const selectOtherSelected = formData[question.id] === 'Other';
+        const isCISQuestion = question.id === 'documents_cis';
+        const cisWillProvide = isCISQuestion && formData[question.id] === 'Yes - will provide';
 
         return (
           <div className="space-y-2">
@@ -139,6 +141,24 @@ export default function IntakeForm() {
                 }}
                 className="form-input"
               />
+            )}
+
+            {/* Show file upload if CIS "Yes - will provide" is selected */}
+            {cisWillProvide && (
+              <div>
+                <input
+                  type="file"
+                  id={`${question.id}_file`}
+                  onChange={(e) => handleFileChange(`${question.id}_file`, e.target.files)}
+                  className="form-input"
+                  accept=".pdf,.doc,.docx,.xls,.xlsx"
+                />
+                {files[`${question.id}_file`] && (
+                  <div className="mt-2 text-sm text-[var(--text-muted)]">
+                    {files[`${question.id}_file`].length} file(s) selected
+                  </div>
+                )}
+              </div>
             )}
           </div>
         );

@@ -6,7 +6,7 @@
 
 :root {
   /* Cold Lava Brand Colors */
-  --primary: #0a0a33; /* Dark navy - primary background */
+  --primary: #0b0b33; /* Dark navy - primary background */
   --primary-light: #1a1a4a; /* Secondary background */
   --accent: #3ebecb; /* Turquoise - buttons, CTAs, logo color */
   --accent-alt: #02bbd4; /* Alternative turquoise */
@@ -15,7 +15,7 @@
   --text: #ffffff; /* Primary text */
   --text-muted: #cccccc; /* Secondary text */
   --text-subtle: #aaaaaa; /* Muted text */
-  --background: #0a0a33; /* Main background */
+  --background: #0b0b33; /* Main background */
   --surface: #1a1a4a; /* Card/section backgrounds */
   --border: #333344; /* Borders */
 }
