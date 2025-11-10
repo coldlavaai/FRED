@@ -12,6 +12,7 @@ export default function IntakeForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [currentSection, setCurrentSection] = useState<string>('');
+  const [showMissingFields, setShowMissingFields] = useState(false);
 
   // Auto-save to localStorage
   useEffect(() => {
@@ -44,6 +45,26 @@ export default function IntakeForm() {
   });
   const completionPercentage = Math.round((completedRequired.length / requiredQuestions.length) * 100);
 
+  // Get missing required fields
+  const missingRequiredFields = requiredQuestions.filter(q => {
+    const value = formData[q.id];
+    return !value || (Array.isArray(value) && value.length === 0) || value.toString().trim() === '';
+  });
+
+  // Scroll to a specific question
+  const scrollToQuestion = (questionId: string) => {
+    const element = document.getElementById(`question-${questionId}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Highlight the question briefly
+      element.classList.add('ring-2', 'ring-[var(--accent)]', 'ring-offset-2', 'ring-offset-[var(--background)]');
+      setTimeout(() => {
+        element.classList.remove('ring-2', 'ring-[var(--accent)]', 'ring-offset-2', 'ring-offset-[var(--background)]');
+      }, 2000);
+    }
+    setShowMissingFields(false);
+  };
+
   const handleInputChange = (questionId: string, value: any) => {
     setFormData(prev => ({
       ...prev,
@@ -67,13 +88,11 @@ export default function IntakeForm() {
 
     try {
       // Validate required fields
-      const missingFields = questions
-        .filter(q => q.required && !formData[q.id])
-        .map(q => q.question);
-
-      if (missingFields.length > 0) {
-        setError(`Please fill in all required fields: ${missingFields.join(', ')}`);
+      if (missingRequiredFields.length > 0) {
+        setError('Please fill in all required fields');
+        setShowMissingFields(true);
         setIsSubmitting(false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
 
@@ -338,11 +357,17 @@ export default function IntakeForm() {
               const phase = section.includes('Phase 1') ? '1' : section.includes('Phase 2') ? '2' : section.includes('Phase 3') ? '3' : '';
               const shortName = section.replace(/Phase \d: /, '').replace(/ \(.*\)/, '');
               const questionsInSection = questions.filter(q => q.section === section);
+              const requiredInSection = questionsInSection.filter(q => q.required);
               const completedInSection = questionsInSection.filter(q => {
                 const value = formData[q.id];
                 return value && (Array.isArray(value) ? value.length > 0 : value.toString().trim() !== '');
               });
-              const sectionComplete = questionsInSection.length > 0 && completedInSection.length === questionsInSection.length;
+              const completedRequiredInSection = requiredInSection.filter(q => {
+                const value = formData[q.id];
+                return value && (Array.isArray(value) ? value.length > 0 : value.toString().trim() !== '');
+              });
+              const sectionComplete = requiredInSection.length > 0 && completedRequiredInSection.length === requiredInSection.length;
+              const hasRequiredFields = requiredInSection.length > 0;
 
               return (
                 <button
@@ -351,13 +376,27 @@ export default function IntakeForm() {
                     const element = document.getElementById(`section-${idx}`);
                     element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   }}
-                  className="w-full text-left px-2 py-1.5 rounded text-xs hover:bg-[var(--accent)]/10 transition-colors flex items-center gap-2"
+                  className="w-full text-left px-2 py-1.5 rounded text-xs hover:bg-[var(--accent)]/10 transition-colors"
                 >
-                  {phase && <span className="text-[var(--accent)] font-bold">P{phase}</span>}
-                  <span className={sectionComplete ? 'text-[var(--accent)]' : 'text-[var(--text-muted)]'}>
-                    {shortName}
-                  </span>
-                  {sectionComplete && <span className="ml-auto text-[var(--accent)]">✓</span>}
+                  <div className="flex items-center gap-2">
+                    {phase && <span className="text-[var(--accent)] font-bold">P{phase}</span>}
+                    <span className={sectionComplete ? 'text-[var(--accent)] font-medium' : 'text-[var(--text-muted)]'}>
+                      {shortName}
+                    </span>
+                    {sectionComplete && <span className="ml-auto text-[var(--accent)] text-sm">✓</span>}
+                  </div>
+                  {hasRequiredFields && (
+                    <div className="mt-1 text-[10px]">
+                      <span className={completedRequiredInSection.length === requiredInSection.length ? 'text-[var(--accent)]' : 'text-[var(--text-muted)]'}>
+                        {completedRequiredInSection.length}/{requiredInSection.length} required
+                      </span>
+                      {completedInSection.length > completedRequiredInSection.length && (
+                        <span className="text-[var(--text-subtle)] ml-1">
+                          +{completedInSection.length - completedRequiredInSection.length} optional
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </button>
               );
             })}
@@ -395,14 +434,14 @@ export default function IntakeForm() {
       {/* Form */}
       <form onSubmit={handleSubmit}>
         {sections.map((section, sectionIndex) => (
-          <div key={section} className="section-card">
+          <div key={section} id={`section-${sectionIndex}`} className="section-card">
             <h3 className="section-title">{section}</h3>
 
             <div className="space-y-8">
               {questions
                 .filter(q => q.section === section)
                 .map((question, questionIndex) => (
-                  <div key={question.id} className="space-y-3 pb-6 border-b border-[var(--border)]/30 last:border-b-0 last:pb-0">
+                  <div key={question.id} id={`question-${question.id}`} className="space-y-3 pb-6 border-b border-[var(--border)]/30 last:border-b-0 last:pb-0 transition-all rounded-lg">
                     <label htmlFor={question.id} className="form-label">
                       {question.question}
                       {question.required && <span className="text-[var(--accent)] ml-1">*</span>}
@@ -422,7 +461,30 @@ export default function IntakeForm() {
         {/* Error Display */}
         {error && (
           <div className="section-card bg-red-900/20 border-red-500">
-            <p className="text-red-400">{error}</p>
+            <p className="text-red-400 font-semibold mb-3">{error}</p>
+
+            {showMissingFields && missingRequiredFields.length > 0 && (
+              <div className="mt-4">
+                <p className="text-white font-medium mb-3">Missing required fields ({missingRequiredFields.length}):</p>
+                <div className="space-y-2 max-h-96 overflow-y-auto">
+                  {missingRequiredFields.map(q => (
+                    <button
+                      key={q.id}
+                      type="button"
+                      onClick={() => scrollToQuestion(q.id)}
+                      className="w-full text-left px-4 py-3 bg-[var(--surface)] hover:bg-[var(--accent)]/10 border border-[var(--border)] rounded-lg transition-colors flex items-start gap-3 group"
+                    >
+                      <span className="text-[var(--accent)] mt-0.5 group-hover:scale-110 transition-transform">→</span>
+                      <div className="flex-1">
+                        <p className="text-white text-sm font-medium">{q.question}</p>
+                        <p className="text-[var(--text-muted)] text-xs mt-1">{q.section}</p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+                <p className="text-[var(--text-muted)] text-xs mt-3">Click any field to navigate to it</p>
+              </div>
+            )}
           </div>
         )}
 

@@ -154,6 +154,14 @@ export const questions: Question[] = [
       "Other"
     ]
   },
+  {
+    id: "pipeline_automation_other",
+    section: "Phase 2: Deal Pipeline & Workflow (Automation)",
+    question: "Please describe other automation needs:",
+    type: "textarea",
+    required: false,
+    placeholder: "Describe what else should happen automatically..."
+  },
 
   // Communication & Activity Tracking
   {
@@ -172,6 +180,14 @@ export const questions: Question[] = [
       "Other"
     ],
     helpText: "Select all that apply"
+  },
+  {
+    id: "communication_channels_other",
+    section: "Phase 2: Communication & Notes (Automation)",
+    question: "Please specify other communication channels:",
+    type: "textarea",
+    required: false,
+    placeholder: "e.g., Signal, WeChat, etc."
   },
   {
     id: "communication_logging",
@@ -251,6 +267,14 @@ export const questions: Question[] = [
     ],
     helpText: "Paymaster is complex: requires crypto wallet integration, transaction signing, blockchain interaction, split calculations, payment tracking, and security auditing. This is Phase 3 because it's advanced functionality requiring crypto payment infrastructure."
   },
+  {
+    id: "commission_paymaster_modifications",
+    section: "Phase 3: Financial & Currency (Advanced)",
+    question: "Please describe the modifications needed for paymaster feature:",
+    type: "textarea",
+    required: false,
+    placeholder: "Explain how your needs differ from what was discussed..."
+  },
 
   // Reporting & Analytics
   {
@@ -271,6 +295,14 @@ export const questions: Question[] = [
       "Other"
     ],
     helpText: "Select all that would be valuable"
+  },
+  {
+    id: "reports_needed_other",
+    section: "Phase 3: Reporting & Analytics (Advanced)",
+    question: "Please describe other reports/insights you need:",
+    type: "textarea",
+    required: false,
+    placeholder: "Describe other reports that would be valuable..."
   },
   {
     id: "dashboard_metrics",
@@ -312,6 +344,14 @@ export const questions: Question[] = [
       "Other"
     ],
     helpText: "Select all that would be useful"
+  },
+  {
+    id: "notifications_needed_other",
+    section: "Phase 2: Notifications & Reminders (Automation)",
+    question: "Please describe other notifications/alerts you need:",
+    type: "textarea",
+    required: false,
+    placeholder: "Describe other notifications that would be useful..."
   },
   {
     id: "notification_delivery",
@@ -361,21 +401,21 @@ export const questions: Question[] = [
 
   // Documents
   {
-    id: "documents_templates",
+    id: "documents_templates_which",
     section: "Phase 1: Document Templates (Core CRM)",
-    question: "Upload your 5 document templates (Buyer booking, Seller booking, Terms, Commission agreement, NDA)",
-    type: "file",
-    required: true,
-    multipleFiles: true,
-    helpText: "Document automation requires: parsing your templates, identifying dynamic fields, building data injection logic, and PDF generation. Each template needs individual configuration. This is complex work but saves massive time long-term."
-  },
-  {
-    id: "documents_cis",
-    section: "Phase 1: Document Templates (Core CRM)",
-    question: "Upload your CIS (Customer Information Sheet) template if you have one",
-    type: "file",
+    question: "Which of these document templates do you already have?",
+    type: "multiselect",
     required: false,
-    helpText: "You mentioned this document - upload if available, or we can help create one"
+    options: [
+      "Buyer booking",
+      "Seller booking",
+      "Terms and Conditions",
+      "Commission agreement",
+      "NDA",
+      "CIS (Customer Information Sheet)",
+      "None - we'll need to create them"
+    ],
+    helpText: "We may ask you to send these templates later. Document automation requires: parsing your templates, identifying dynamic fields, building data injection logic, and PDF generation."
   },
   {
     id: "documents_id_types",
@@ -385,6 +425,14 @@ export const questions: Question[] = [
     required: true,
     options: ["Passport", "Driver's license", "National ID card", "Business registration", "Other"],
     helpText: "Select all that apply"
+  },
+  {
+    id: "documents_id_types_other",
+    section: "Phase 1: Document Templates (Core CRM)",
+    question: "Please specify other ID document types:",
+    type: "textarea",
+    required: false,
+    placeholder: "e.g., Military ID, Residency permit, etc."
   },
   {
     id: "documents_other",
@@ -402,6 +450,14 @@ export const questions: Question[] = [
       "Other"
     ]
   },
+  {
+    id: "documents_other_specify",
+    section: "Phase 1: Document Templates (Core CRM)",
+    question: "Please specify other document types:",
+    type: "textarea",
+    required: false,
+    placeholder: "e.g., Tax returns, incorporation documents, etc."
+  },
 
   // Wallet Management
   {
@@ -416,6 +472,14 @@ export const questions: Question[] = [
       "Need to discuss further"
     ],
     helpText: "Wallet verification requires: secure storage, fast search indexing (for instant lookups), relationship mapping (wallet→deals→clients), and fraud detection UI. This is a unique feature that requires custom development."
+  },
+  {
+    id: "wallet_confirmation_modifications",
+    section: "Phase 1: Wallet Verification (Core CRM)",
+    question: "Please describe the modifications needed for wallet verification:",
+    type: "textarea",
+    required: false,
+    placeholder: "Explain how your needs differ from what was discussed..."
   },
   {
     id: "wallet_additional_fields",
@@ -463,6 +527,14 @@ export const questions: Question[] = [
       "Build simple custom solution"
     ],
     helpText: "E-signature integration requires: API authentication, document upload/download logic, webhook handling for status updates, and error recovery. Each platform has different APIs, so this choice affects development complexity."
+  },
+  {
+    id: "esignature_preference_other",
+    section: "Phase 2: Electronic Signatures (Automation)",
+    question: "Please specify the e-signature platform you already use:",
+    type: "text",
+    required: false,
+    placeholder: "e.g., Adobe Sign, PandaDoc, etc."
   },
   {
     id: "esignature_workflow",
@@ -560,6 +632,14 @@ export const questions: Question[] = [
     ]
   },
   {
+    id: "integrations_other_specify",
+    section: "Phase 2: Integrations & External Tools (Automation)",
+    question: "Please specify other tools that need to integrate:",
+    type: "textarea",
+    required: false,
+    placeholder: "List any other tools and how they should integrate..."
+  },
+  {
     id: "integrations_api",
     section: "Phase 2: Integrations & External Tools (Automation)",
     question: "Do you need API access for future integrations?",
@@ -606,6 +686,14 @@ export const questions: Question[] = [
     ]
   },
   {
+    id: "security_data_retention_years",
+    section: "Phase 3: Security & Compliance (Advanced)",
+    question: "Please specify how many years to retain data:",
+    type: "text",
+    required: false,
+    placeholder: "e.g., 7 years"
+  },
+  {
     id: "security_audit_trail",
     section: "Phase 3: Security & Compliance (Advanced)",
     question: "Do you need to track who changed what and when?",
@@ -636,6 +724,14 @@ export const questions: Question[] = [
     type: "select",
     required: false,
     options: ["Excel", "Google Sheets", "Another CRM", "Paper/whiteboard only", "Other"]
+  },
+  {
+    id: "existing_data_format_other",
+    section: "Phase 1: Existing Data (Core CRM)",
+    question: "Please specify the data format:",
+    type: "text",
+    required: false,
+    placeholder: "e.g., Access database, custom system, etc."
   },
   {
     id: "existing_data_volume",
@@ -688,6 +784,14 @@ export const questions: Question[] = [
       "Specific date (explain below)",
       "No rush"
     ]
+  },
+  {
+    id: "timeline_specific_date",
+    section: "Phase 1: Timeline (Core CRM)",
+    question: "Please specify the date and reason:",
+    type: "textarea",
+    required: false,
+    placeholder: "e.g., Need by March 15 because..."
   },
   {
     id: "timeline_specific",
