@@ -111,6 +111,220 @@ export const questions: Question[] = [
     helpText: "e.g., 'Treasury Bonds: maturity date, interest rate, face value'"
   },
 
+  // Deal Pipeline & Workflow - CRITICAL FOR QUOTING
+  {
+    id: "pipeline_stages",
+    section: "Deal Pipeline & Workflow",
+    question: "What stages does a deal go through from start to finish?",
+    type: "textarea",
+    required: true,
+    placeholder: "e.g., Lead → Qualified → Proposal Sent → Negotiating → Closed Won / Closed Lost",
+    helpText: "CRITICAL: This determines how we build your deal management interface"
+  },
+  {
+    id: "pipeline_visualization",
+    section: "Deal Pipeline & Workflow",
+    question: "How do you want to view your deals?",
+    type: "multiselect",
+    required: true,
+    options: [
+      "Kanban board (drag deals between stages)",
+      "List view with filters",
+      "Calendar view by close date",
+      "Pipeline forecast (deal value by stage)",
+      "Not sure - recommend best option"
+    ],
+    helpText: "Select all that would be useful"
+  },
+  {
+    id: "pipeline_automation",
+    section: "Deal Pipeline & Workflow",
+    question: "What should happen automatically when a deal changes stage?",
+    type: "multiselect",
+    required: false,
+    options: [
+      "Send notification to me",
+      "Send email to client",
+      "Generate specific document",
+      "Request e-signature",
+      "Update deal probability/forecast",
+      "Nothing - I'll handle it manually",
+      "Other"
+    ]
+  },
+
+  // Communication & Activity Tracking
+  {
+    id: "communication_channels",
+    section: "Communication & Notes",
+    question: "How do you primarily communicate with clients?",
+    type: "multiselect",
+    required: true,
+    options: [
+      "WhatsApp",
+      "Email",
+      "Phone calls",
+      "Video calls",
+      "In-person meetings",
+      "Telegram",
+      "Other"
+    ],
+    helpText: "Select all that apply"
+  },
+  {
+    id: "communication_logging",
+    section: "Communication & Notes",
+    question: "Do you want to log communications in the CRM?",
+    type: "select",
+    required: true,
+    options: [
+      "Yes - automatically if possible (e.g., email integration)",
+      "Yes - but manual entry is fine",
+      "Just need a notes field",
+      "Not important",
+      "Not sure"
+    ]
+  },
+  {
+    id: "communication_history",
+    section: "Communication & Notes",
+    question: "What information should each communication log capture?",
+    type: "multiselect",
+    required: false,
+    options: [
+      "Date & time",
+      "Communication type (call, email, WhatsApp, etc.)",
+      "Summary/notes",
+      "Attachments/files",
+      "Next follow-up date",
+      "Sentiment (positive, neutral, negative)"
+    ],
+    helpText: "Select all that would be useful"
+  },
+
+  // Financial & Currency
+  {
+    id: "currencies_used",
+    section: "Financial & Currency",
+    question: "What currencies do you deal in?",
+    type: "textarea",
+    required: true,
+    placeholder: "e.g., USD, EUR, GBP, Bitcoin, Ethereum...",
+    helpText: "List all currencies including fiat and crypto"
+  },
+  {
+    id: "currency_conversion",
+    section: "Financial & Currency",
+    question: "Do you need automatic currency conversion?",
+    type: "select",
+    required: true,
+    options: [
+      "Yes - real-time exchange rates",
+      "Yes - manual exchange rates I input",
+      "No - I'll handle conversions externally",
+      "Not sure"
+    ],
+    helpText: "Affects reporting accuracy if you deal in multiple currencies"
+  },
+  {
+    id: "commission_tracking",
+    section: "Financial & Currency",
+    question: "How do you calculate and track commissions?",
+    type: "textarea",
+    required: true,
+    placeholder: "e.g., 5% of deal value, split 60/40 with partner, paid on completion...",
+    helpText: "IMPORTANT: Describe your commission structure in detail"
+  },
+  {
+    id: "commission_splits",
+    section: "Financial & Currency",
+    question: "Do you split commissions with partners or team members?",
+    type: "select",
+    required: true,
+    options: [
+      "Yes - need to track commission splits",
+      "No - I keep all commission",
+      "Sometimes - depends on the deal"
+    ]
+  },
+
+  // Reporting & Analytics
+  {
+    id: "reports_needed",
+    section: "Reporting & Analytics",
+    question: "What reports/insights do you need?",
+    type: "multiselect",
+    required: true,
+    options: [
+      "Deals by status/stage",
+      "Revenue forecast (pipeline value)",
+      "Closed deals (won vs lost)",
+      "Conversion rates",
+      "Deal velocity (time to close)",
+      "Commission earned",
+      "Top performing clients",
+      "Activity log (calls, emails made)",
+      "Other"
+    ],
+    helpText: "Select all that would be valuable"
+  },
+  {
+    id: "dashboard_metrics",
+    section: "Reporting & Analytics",
+    question: "What do you want to see on your main dashboard when you log in?",
+    type: "textarea",
+    required: true,
+    placeholder: "e.g., Total pipeline value, deals closing this week, overdue follow-ups...",
+    helpText: "Your at-a-glance metrics - what numbers matter most?"
+  },
+  {
+    id: "report_export",
+    section: "Reporting & Analytics",
+    question: "Do you need to export data/reports?",
+    type: "multiselect",
+    required: false,
+    options: [
+      "Export to Excel/CSV",
+      "Export to PDF",
+      "Email scheduled reports",
+      "Not needed"
+    ]
+  },
+
+  // Notifications & Reminders
+  {
+    id: "notifications_needed",
+    section: "Notifications & Reminders",
+    question: "What notifications/alerts do you need?",
+    type: "multiselect",
+    required: true,
+    options: [
+      "Deal hasn't moved in X days",
+      "Client hasn't responded in X days",
+      "Document pending signature",
+      "Deal close date approaching",
+      "Flagged wallet detected",
+      "Daily/weekly summary digest",
+      "Other"
+    ],
+    helpText: "Select all that would be useful"
+  },
+  {
+    id: "notification_delivery",
+    section: "Notifications & Reminders",
+    question: "How should you receive notifications?",
+    type: "multiselect",
+    required: true,
+    options: [
+      "Email",
+      "WhatsApp",
+      "SMS",
+      "In-app only",
+      "Desktop push notifications",
+      "Not sure - recommend best option"
+    ]
+  },
+
   // Client Management
   {
     id: "client_fields_essential",
@@ -297,6 +511,114 @@ export const questions: Question[] = [
       "No - everyone has same access",
       "Not sure"
     ]
+  },
+  {
+    id: "team_deal_assignment",
+    section: "Team & Users",
+    question: "How should deals be assigned to team members?",
+    type: "select",
+    required: false,
+    options: [
+      "Each deal has one owner",
+      "Deals can be shared among multiple people",
+      "Everyone sees all deals",
+      "Not applicable - I'm the only user",
+      "Not sure"
+    ]
+  },
+
+  // Integrations & External Tools
+  {
+    id: "integrations_email",
+    section: "Integrations & External Tools",
+    question: "Do you want to integrate your email?",
+    type: "select",
+    required: false,
+    options: [
+      "Yes - Gmail",
+      "Yes - Outlook/Microsoft 365",
+      "Yes - Other email provider",
+      "No - manual entry is fine",
+      "Not sure"
+    ],
+    helpText: "Email integration can automatically log emails with clients"
+  },
+  {
+    id: "integrations_other",
+    section: "Integrations & External Tools",
+    question: "What other tools do you currently use that might need to integrate?",
+    type: "multiselect",
+    required: false,
+    options: [
+      "Accounting software (QuickBooks, Xero, etc.)",
+      "Payment processors",
+      "Blockchain explorers (for wallet verification)",
+      "Calendar (Google Calendar, Outlook)",
+      "Zapier/Make for custom automations",
+      "WhatsApp Business API",
+      "None - CRM will be standalone",
+      "Other"
+    ]
+  },
+  {
+    id: "integrations_api",
+    section: "Integrations & External Tools",
+    question: "Do you need API access for future integrations?",
+    type: "select",
+    required: false,
+    options: [
+      "Yes - important for future flexibility",
+      "Maybe - not sure yet",
+      "No - not needed",
+      "What's an API?"
+    ],
+    helpText: "API allows external tools to connect to your CRM data"
+  },
+
+  // Security & Compliance
+  {
+    id: "security_compliance",
+    section: "Security & Compliance",
+    question: "Do you have specific compliance requirements?",
+    type: "multiselect",
+    required: false,
+    options: [
+      "KYC (Know Your Customer)",
+      "AML (Anti-Money Laundering)",
+      "GDPR (data protection)",
+      "Financial regulations (FCA, SEC, etc.)",
+      "Audit trail for all changes",
+      "None that I'm aware of",
+      "Not sure"
+    ]
+  },
+  {
+    id: "security_data_retention",
+    section: "Security & Compliance",
+    question: "How long do you need to retain client/deal data?",
+    type: "select",
+    required: false,
+    options: [
+      "Forever - never delete",
+      "Archive after X years (specify below)",
+      "Delete after deal closes",
+      "Not sure - recommend best practice",
+      "Depends on regulatory requirements"
+    ]
+  },
+  {
+    id: "security_audit_trail",
+    section: "Security & Compliance",
+    question: "Do you need to track who changed what and when?",
+    type: "select",
+    required: false,
+    options: [
+      "Yes - full audit trail essential",
+      "Just for sensitive fields (deal value, wallet addresses)",
+      "Not important",
+      "Not sure"
+    ],
+    helpText: "Useful for compliance and resolving disputes"
   },
 
   // Existing Data
