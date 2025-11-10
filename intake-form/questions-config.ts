@@ -29,7 +29,7 @@ export const questions: Question[] = [
     type: "textarea",
     required: true,
     placeholder: "e.g., cryptocurrency type, quantity, price, wallet addresses, settlement dates...",
-    helpText: "List all the information you need to track for each cryptocurrency deal"
+    helpText: "IMPORTANT: Each field you list here needs database design, validation logic, and UI components. This directly impacts development time. Be thorough - it's easier to include fields now than add them later."
   },
   {
     id: "crypto_blockchain",
@@ -65,7 +65,7 @@ export const questions: Question[] = [
     type: "textarea",
     required: true,
     placeholder: "e.g., quantity/unit, price, location, delivery method, storage details...",
-    helpText: "List all the information you need to track for each gold deal"
+    helpText: "Gold deals likely have different data requirements than crypto (physical location, shipping, purity/karats). Each deal type needs its own custom data model and interface."
   },
   {
     id: "gold_additional",
@@ -84,7 +84,7 @@ export const questions: Question[] = [
     type: "textarea",
     required: true,
     placeholder: "MT 103\nTreasury Bonds\n[Add all others, one per line]",
-    helpText: "CRITICAL: List every type of banking instrument. We'll create a separate form for each."
+    helpText: "CRITICAL: Each banking instrument type requires a custom data schema and form. If you have 5 types, that's 5 separate interfaces to build. This is why banking complexity significantly impacts pricing."
   },
   {
     id: "banking_fields_common",
@@ -121,7 +121,7 @@ export const questions: Question[] = [
     type: "textarea",
     required: true,
     placeholder: "You mentioned Active, Grey, and Dead. Are these correct? Any others like New, Matched, Pending Signatures, etc.?",
-    helpText: "CRITICAL: This determines how we build your deal management interface"
+    helpText: "CRITICAL: Pipeline stages define your entire workflow and data architecture. Each stage needs: database state management, transition logic, permissions, notifications, and UI components. Adding stages later requires database migrations and code refactoring."
   },
   {
     id: "pipeline_visualization",
@@ -240,7 +240,7 @@ export const questions: Question[] = [
   {
     id: "commission_paymaster",
     section: "Phase 3: Financial & Currency (Advanced)",
-    question: "For Phase 2 paymaster feature: confirm you want to receive commissions, list all recipients with splits, and send payments from within CRM?",
+    question: "For Phase 3 paymaster feature: confirm you want to receive commissions, list all recipients with splits, and send payments from within CRM?",
     type: "select",
     required: true,
     options: [
@@ -248,7 +248,8 @@ export const questions: Question[] = [
       "Yes - but with modifications (explain below)",
       "Not priority for Phase 1",
       "Let's discuss this later"
-    ]
+    ],
+    helpText: "Paymaster is complex: requires crypto wallet integration, transaction signing, blockchain interaction, split calculations, payment tracking, and security auditing. This is Phase 3 because it's advanced functionality requiring crypto payment infrastructure."
   },
 
   // Reporting & Analytics
@@ -366,7 +367,7 @@ export const questions: Question[] = [
     type: "file",
     required: true,
     multipleFiles: true,
-    helpText: "These are the 5 templates you mentioned in the call"
+    helpText: "Document automation requires: parsing your templates, identifying dynamic fields, building data injection logic, and PDF generation. Each template needs individual configuration. This is complex work but saves massive time long-term."
   },
   {
     id: "documents_cis",
@@ -414,7 +415,7 @@ export const questions: Question[] = [
       "Yes - with modifications (explain below)",
       "Need to discuss further"
     ],
-    helpText: "You explained this clearly in the call - just confirming we understood correctly"
+    helpText: "Wallet verification requires: secure storage, fast search indexing (for instant lookups), relationship mapping (wallet→deals→clients), and fraud detection UI. This is a unique feature that requires custom development."
   },
   {
     id: "wallet_additional_fields",
@@ -460,7 +461,8 @@ export const questions: Question[] = [
       "Other platform I already use",
       "No preference - you choose",
       "Build simple custom solution"
-    ]
+    ],
+    helpText: "E-signature integration requires: API authentication, document upload/download logic, webhook handling for status updates, and error recovery. Each platform has different APIs, so this choice affects development complexity."
   },
   {
     id: "esignature_workflow",
