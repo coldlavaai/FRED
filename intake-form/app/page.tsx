@@ -245,10 +245,20 @@ export default function IntakeForm() {
         <p className="text-[var(--text-muted)] mb-4">
           <strong className="text-white">Project:</strong> {projectInfo.projectName}
         </p>
-        <p className="text-[var(--text-muted)]">
+        <p className="text-[var(--text-muted)] mb-4">
           Please answer the following questions to help us understand your requirements and provide an accurate proposal.
           This should take about 15-20 minutes. Your responses will be saved securely.
         </p>
+
+        <div className="bg-[var(--background)] border border-[var(--accent)]/30 rounded-lg p-4 mt-4">
+          <h3 className="text-lg font-semibold text-[var(--accent)] mb-2">Three-Phase Approach</h3>
+          <div className="space-y-2 text-[var(--text-muted)] text-sm">
+            <p><strong className="text-white">Phase 1: Core CRM</strong> - Essential features for daily operations (client management, deal tracking, document storage)</p>
+            <p><strong className="text-white">Phase 2: Automation</strong> - Workflow automation, notifications, e-signatures, and integrations</p>
+            <p><strong className="text-white">Phase 3: Advanced Features</strong> - Commission management, advanced reporting, compliance tools</p>
+          </div>
+          <p className="text-xs text-[var(--text-subtle)] mt-3">Questions are organized by phase to help prioritize features and provide accurate phased pricing.</p>
+        </div>
       </div>
 
       {/* Form */}

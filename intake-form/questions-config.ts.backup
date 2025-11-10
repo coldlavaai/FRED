@@ -51,7 +51,7 @@ export const questions: Question[] = [
   // Gold Deals
   {
     id: "gold_types",
-    section: "Phase 1: Gold Deals (Core CRM)",
+    section: "Gold Deals",
     question: "What types of gold do you commonly deal with?",
     type: "textarea",
     required: true,
@@ -60,7 +60,7 @@ export const questions: Question[] = [
   },
   {
     id: "gold_fields",
-    section: "Phase 1: Gold Deals (Core CRM)",
+    section: "Gold Deals",
     question: "What fields do you need to track for gold deals?",
     type: "textarea",
     required: true,
@@ -69,7 +69,7 @@ export const questions: Question[] = [
   },
   {
     id: "gold_additional",
-    section: "Phase 1: Gold Deals (Core CRM)",
+    section: "Gold Deals",
     question: "Any other gold-specific requirements?",
     type: "textarea",
     required: false,
@@ -79,7 +79,7 @@ export const questions: Question[] = [
   // Banking Deals - CRITICAL
   {
     id: "banking_instruments",
-    section: "Phase 1: Banking Deals (Core CRM)",
+    section: "Banking Deals",
     question: "Complete list of ALL banking instrument types you deal with",
     type: "textarea",
     required: true,
@@ -88,7 +88,7 @@ export const questions: Question[] = [
   },
   {
     id: "banking_fields_common",
-    section: "Phase 1: Banking Deals (Core CRM)",
+    section: "Banking Deals",
     question: "What fields are common across ALL banking deals?",
     type: "textarea",
     required: true,
@@ -97,7 +97,7 @@ export const questions: Question[] = [
   },
   {
     id: "banking_fields_mt103",
-    section: "Phase 1: Banking Deals (Core CRM)",
+    section: "Banking Deals",
     question: "For MT 103 specifically, what additional fields are needed?",
     type: "textarea",
     required: true,
@@ -105,7 +105,7 @@ export const questions: Question[] = [
   },
   {
     id: "banking_fields_other",
-    section: "Phase 1: Banking Deals (Core CRM)",
+    section: "Banking Deals",
     question: "For OTHER banking instruments, what unique fields are needed per type?",
     type: "textarea",
     required: true,
@@ -116,7 +116,7 @@ export const questions: Question[] = [
   // Deal Pipeline & Workflow - CRITICAL FOR QUOTING
   {
     id: "pipeline_stages",
-    section: "Phase 2: Deal Pipeline & Workflow (Automation)",
+    section: "Deal Pipeline & Workflow",
     question: "Confirm the deal stages you mentioned: Active, Grey (not active but not dead), Dead. Any other stages needed?",
     type: "textarea",
     required: true,
@@ -125,7 +125,7 @@ export const questions: Question[] = [
   },
   {
     id: "pipeline_visualization",
-    section: "Phase 2: Deal Pipeline & Workflow (Automation)",
+    section: "Deal Pipeline & Workflow",
     question: "How do you want to view your deals?",
     type: "multiselect",
     required: true,
@@ -140,7 +140,7 @@ export const questions: Question[] = [
   },
   {
     id: "pipeline_automation",
-    section: "Phase 2: Deal Pipeline & Workflow (Automation)",
+    section: "Deal Pipeline & Workflow",
     question: "What should happen automatically when a deal changes stage?",
     type: "multiselect",
     required: false,
@@ -158,7 +158,7 @@ export const questions: Question[] = [
   // Communication & Activity Tracking
   {
     id: "communication_channels",
-    section: "Phase 2: Communication & Notes (Automation)",
+    section: "Communication & Notes",
     question: "Besides WhatsApp (which we know you use), what other channels do you use?",
     type: "multiselect",
     required: false,
@@ -175,7 +175,7 @@ export const questions: Question[] = [
   },
   {
     id: "communication_logging",
-    section: "Phase 2: Communication & Notes (Automation)",
+    section: "Communication & Notes",
     question: "Do you want to log communications in the CRM?",
     type: "select",
     required: true,
@@ -189,7 +189,7 @@ export const questions: Question[] = [
   },
   {
     id: "communication_history",
-    section: "Phase 2: Communication & Notes (Automation)",
+    section: "Communication & Notes",
     question: "What information should each communication log capture?",
     type: "multiselect",
     required: false,
@@ -207,7 +207,7 @@ export const questions: Question[] = [
   // Financial & Currency
   {
     id: "currencies_used",
-    section: "Phase 3: Financial & Currency (Advanced)",
+    section: "Financial & Currency",
     question: "What currencies do you deal in?",
     type: "textarea",
     required: true,
@@ -216,7 +216,7 @@ export const questions: Question[] = [
   },
   {
     id: "currency_conversion",
-    section: "Phase 3: Financial & Currency (Advanced)",
+    section: "Financial & Currency",
     question: "Do you need automatic currency conversion?",
     type: "select",
     required: true,
@@ -230,7 +230,7 @@ export const questions: Question[] = [
   },
   {
     id: "commission_tracking",
-    section: "Phase 3: Financial & Currency (Advanced)",
+    section: "Financial & Currency",
     question: "Confirm commission structure: 3-4% total, mandates get 1.5% each, intermediaries get 1%. Are there any variations or exceptions?",
     type: "textarea",
     required: false,
@@ -239,7 +239,7 @@ export const questions: Question[] = [
   },
   {
     id: "commission_paymaster",
-    section: "Phase 3: Financial & Currency (Advanced)",
+    section: "Financial & Currency",
     question: "For Phase 2 paymaster feature: confirm you want to receive commissions, list all recipients with splits, and send payments from within CRM?",
     type: "select",
     required: true,
@@ -254,7 +254,7 @@ export const questions: Question[] = [
   // Reporting & Analytics
   {
     id: "reports_needed",
-    section: "Phase 3: Reporting & Analytics (Advanced)",
+    section: "Reporting & Analytics",
     question: "What reports/insights do you need?",
     type: "multiselect",
     required: true,
@@ -273,7 +273,7 @@ export const questions: Question[] = [
   },
   {
     id: "dashboard_metrics",
-    section: "Phase 3: Reporting & Analytics (Advanced)",
+    section: "Reporting & Analytics",
     question: "What do you want to see on your main dashboard when you log in?",
     type: "textarea",
     required: true,
@@ -282,7 +282,7 @@ export const questions: Question[] = [
   },
   {
     id: "report_export",
-    section: "Phase 3: Reporting & Analytics (Advanced)",
+    section: "Reporting & Analytics",
     question: "Do you need to export data/reports?",
     type: "multiselect",
     required: false,
@@ -297,7 +297,7 @@ export const questions: Question[] = [
   // Notifications & Reminders
   {
     id: "notifications_needed",
-    section: "Phase 2: Notifications & Reminders (Automation)",
+    section: "Notifications & Reminders",
     question: "What notifications/alerts do you need?",
     type: "multiselect",
     required: true,
@@ -314,7 +314,7 @@ export const questions: Question[] = [
   },
   {
     id: "notification_delivery",
-    section: "Phase 2: Notifications & Reminders (Automation)",
+    section: "Notifications & Reminders",
     question: "How should you receive notifications?",
     type: "multiselect",
     required: true,
@@ -331,7 +331,7 @@ export const questions: Question[] = [
   // Client Management
   {
     id: "client_fields_essential",
-    section: "Phase 1: Client Management (Core CRM)",
+    section: "Client Management",
     question: "Which client fields are ESSENTIAL for your business?",
     type: "multiselect",
     required: true,
@@ -351,7 +351,7 @@ export const questions: Question[] = [
   },
   {
     id: "client_fields_additional",
-    section: "Phase 1: Client Management (Core CRM)",
+    section: "Client Management",
     question: "Any other client fields needed?",
     type: "textarea",
     required: false,
@@ -361,7 +361,7 @@ export const questions: Question[] = [
   // Documents
   {
     id: "documents_templates",
-    section: "Phase 1: Document Templates (Core CRM)",
+    section: "Document Templates",
     question: "Upload your 5 document templates (Buyer booking, Seller booking, Terms, Commission agreement, NDA)",
     type: "file",
     required: true,
@@ -370,7 +370,7 @@ export const questions: Question[] = [
   },
   {
     id: "documents_cis",
-    section: "Phase 1: Document Templates (Core CRM)",
+    section: "Document Templates",
     question: "Upload your CIS (Customer Information Sheet) template if you have one",
     type: "file",
     required: false,
@@ -378,7 +378,7 @@ export const questions: Question[] = [
   },
   {
     id: "documents_id_types",
-    section: "Phase 1: Document Templates (Core CRM)",
+    section: "Document Templates",
     question: "What types of ID documents do you accept?",
     type: "multiselect",
     required: true,
@@ -387,7 +387,7 @@ export const questions: Question[] = [
   },
   {
     id: "documents_other",
-    section: "Phase 1: Document Templates (Core CRM)",
+    section: "Document Templates",
     question: "What other document types do you store per client?",
     type: "multiselect",
     required: true,
@@ -405,7 +405,7 @@ export const questions: Question[] = [
   // Wallet Management
   {
     id: "wallet_confirmation",
-    section: "Phase 1: Wallet Verification (Core CRM)",
+    section: "Wallet Verification",
     question: "Confirm wallet verification approach: Store all wallet addresses, manually flag good/bad ones, search function shows green/red when checking new addresses. Correct?",
     type: "select",
     required: true,
@@ -418,7 +418,7 @@ export const questions: Question[] = [
   },
   {
     id: "wallet_additional_fields",
-    section: "Phase 1: Wallet Verification (Core CRM)",
+    section: "Wallet Verification",
     question: "Besides the wallet address and good/bad flag, what other info should we store with each wallet?",
     type: "multiselect",
     required: false,
@@ -434,7 +434,7 @@ export const questions: Question[] = [
   },
   {
     id: "wallet_screening_preference",
-    section: "Phase 1: Wallet Verification (Core CRM)",
+    section: "Wallet Verification",
     question: "Future automated wallet screening (Phase 2) - interested?",
     type: "select",
     required: false,
@@ -450,7 +450,7 @@ export const questions: Question[] = [
   // E-Signature
   {
     id: "esignature_preference",
-    section: "Phase 2: Electronic Signatures (Automation)",
+    section: "Electronic Signatures",
     question: "E-signature platform preference",
     type: "select",
     required: true,
@@ -464,7 +464,7 @@ export const questions: Question[] = [
   },
   {
     id: "esignature_workflow",
-    section: "Phase 2: Electronic Signatures (Automation)",
+    section: "Electronic Signatures",
     question: "Signature workflow requirements",
     type: "multiselect",
     required: true,
@@ -482,7 +482,7 @@ export const questions: Question[] = [
   // Team & Users
   {
     id: "team_size_now",
-    section: "Phase 1: Team & Users (Core CRM)",
+    section: "Team & Users",
     question: "How many people will use the CRM initially?",
     type: "number",
     required: true,
@@ -490,7 +490,7 @@ export const questions: Question[] = [
   },
   {
     id: "team_size_future",
-    section: "Phase 1: Team & Users (Core CRM)",
+    section: "Team & Users",
     question: "Expected team size in 12 months",
     type: "number",
     required: false,
@@ -498,7 +498,7 @@ export const questions: Question[] = [
   },
   {
     id: "team_permissions",
-    section: "Phase 1: Team & Users (Core CRM)",
+    section: "Team & Users",
     question: "Do you need different permission levels for team members?",
     type: "select",
     required: true,
@@ -511,7 +511,7 @@ export const questions: Question[] = [
   },
   {
     id: "team_deal_assignment",
-    section: "Phase 1: Team & Users (Core CRM)",
+    section: "Team & Users",
     question: "How should deals be assigned to team members?",
     type: "select",
     required: false,
@@ -527,7 +527,7 @@ export const questions: Question[] = [
   // Integrations & External Tools
   {
     id: "integrations_email",
-    section: "Phase 2: Integrations & External Tools (Automation)",
+    section: "Integrations & External Tools",
     question: "Do you want to integrate your email?",
     type: "select",
     required: false,
@@ -542,7 +542,7 @@ export const questions: Question[] = [
   },
   {
     id: "integrations_other",
-    section: "Phase 2: Integrations & External Tools (Automation)",
+    section: "Integrations & External Tools",
     question: "What other tools do you currently use that might need to integrate?",
     type: "multiselect",
     required: false,
@@ -559,7 +559,7 @@ export const questions: Question[] = [
   },
   {
     id: "integrations_api",
-    section: "Phase 2: Integrations & External Tools (Automation)",
+    section: "Integrations & External Tools",
     question: "Do you need API access for future integrations?",
     type: "select",
     required: false,
@@ -575,7 +575,7 @@ export const questions: Question[] = [
   // Security & Compliance
   {
     id: "security_compliance",
-    section: "Phase 3: Security & Compliance (Advanced)",
+    section: "Security & Compliance",
     question: "Do you have specific compliance requirements?",
     type: "multiselect",
     required: false,
@@ -591,7 +591,7 @@ export const questions: Question[] = [
   },
   {
     id: "security_data_retention",
-    section: "Phase 3: Security & Compliance (Advanced)",
+    section: "Security & Compliance",
     question: "How long do you need to retain client/deal data?",
     type: "select",
     required: false,
@@ -605,7 +605,7 @@ export const questions: Question[] = [
   },
   {
     id: "security_audit_trail",
-    section: "Phase 3: Security & Compliance (Advanced)",
+    section: "Security & Compliance",
     question: "Do you need to track who changed what and when?",
     type: "select",
     required: false,
@@ -621,7 +621,7 @@ export const questions: Question[] = [
   // Existing Data
   {
     id: "existing_data",
-    section: "Phase 1: Existing Data (Core CRM)",
+    section: "Existing Data",
     question: "Do you have existing client/deal data to import?",
     type: "select",
     required: true,
@@ -629,7 +629,7 @@ export const questions: Question[] = [
   },
   {
     id: "existing_data_format",
-    section: "Phase 1: Existing Data (Core CRM)",
+    section: "Existing Data",
     question: "If yes, what format is your existing data in?",
     type: "select",
     required: false,
@@ -637,7 +637,7 @@ export const questions: Question[] = [
   },
   {
     id: "existing_data_volume",
-    section: "Phase 1: Existing Data (Core CRM)",
+    section: "Existing Data",
     question: "Roughly how much data? (number of clients and deals)",
     type: "textarea",
     required: false,
@@ -647,7 +647,7 @@ export const questions: Question[] = [
   // Hosting & Access
   {
     id: "hosting_access",
-    section: "Phase 3: Hosting & Access (Advanced)",
+    section: "Hosting & Access",
     question: "Where do you need to access the CRM from?",
     type: "multiselect",
     required: true,
@@ -662,7 +662,7 @@ export const questions: Question[] = [
   },
   {
     id: "hosting_mobile",
-    section: "Phase 3: Hosting & Access (Advanced)",
+    section: "Hosting & Access",
     question: "How important is mobile access?",
     type: "select",
     required: true,
@@ -676,7 +676,7 @@ export const questions: Question[] = [
   // Timeline
   {
     id: "timeline_preference",
-    section: "Phase 1: Timeline (Core CRM)",
+    section: "Timeline",
     question: "When do you need the CRM live?",
     type: "select",
     required: true,
@@ -689,7 +689,7 @@ export const questions: Question[] = [
   },
   {
     id: "timeline_specific",
-    section: "Phase 1: Timeline (Core CRM)",
+    section: "Timeline",
     question: "If you have a specific deadline, what is it and why?",
     type: "textarea",
     required: false,
@@ -700,7 +700,7 @@ export const questions: Question[] = [
   // Success Criteria
   {
     id: "success_main_problem",
-    section: "Phase 1: Success Criteria (Core CRM)",
+    section: "Success Criteria",
     question: "What's the #1 biggest problem this CRM needs to solve for your business?",
     type: "textarea",
     required: true,
@@ -709,7 +709,7 @@ export const questions: Question[] = [
   },
   {
     id: "success_daily_usage",
-    section: "Phase 1: Success Criteria (Core CRM)",
+    section: "Success Criteria",
     question: "Describe your ideal daily workflow with the new CRM",
     type: "textarea",
     required: true,
@@ -718,7 +718,7 @@ export const questions: Question[] = [
   },
   {
     id: "success_must_have",
-    section: "Phase 1: Success Criteria (Core CRM)",
+    section: "Success Criteria",
     question: "Which 3-5 features are absolutely MUST-HAVE for launch?",
     type: "textarea",
     required: true,
@@ -727,7 +727,7 @@ export const questions: Question[] = [
   },
   {
     id: "success_nice_to_have",
-    section: "Phase 1: Success Criteria (Core CRM)",
+    section: "Success Criteria",
     question: "Which features would be NICE-TO-HAVE but could wait for v2?",
     type: "textarea",
     required: false,
@@ -736,7 +736,7 @@ export const questions: Question[] = [
   },
   {
     id: "success_measurement",
-    section: "Phase 1: Success Criteria (Core CRM)",
+    section: "Success Criteria",
     question: "How will you measure success 3 months after launch?",
     type: "textarea",
     required: true,
@@ -747,7 +747,7 @@ export const questions: Question[] = [
   // Additional Info
   {
     id: "additional_requirements",
-    section: "Phase 1: Additional Information (Core CRM)",
+    section: "Additional Information",
     question: "Anything else we should know?",
     type: "textarea",
     required: false,
@@ -755,7 +755,7 @@ export const questions: Question[] = [
   },
   {
     id: "questions_for_us",
-    section: "Phase 1: Additional Information (Core CRM)",
+    section: "Additional Information",
     question: "Any questions for us?",
     type: "textarea",
     required: false,
