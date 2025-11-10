@@ -77,6 +77,47 @@ export default function IntakeForm() {
         return;
       }
 
+      // Upload files to Supabase Storage
+      const uploadedFilesInfo = [];
+      for (const [questionId, fileList] of Object.entries(files)) {
+        const uploadedUrls = [];
+
+        for (const file of fileList) {
+          const formData = new FormData();
+          formData.append('file', file);
+          formData.append('questionId', questionId);
+          formData.append('clientName', projectInfo.clientName);
+
+          try {
+            const uploadResponse = await fetch('/api/upload', {
+              method: 'POST',
+              body: formData,
+            });
+
+            if (!uploadResponse.ok) {
+              throw new Error(`Failed to upload ${file.name}`);
+            }
+
+            const uploadResult = await uploadResponse.json();
+            uploadedUrls.push({
+              fileName: file.name,
+              fileUrl: uploadResult.url,
+              fileSize: file.size
+            });
+          } catch (uploadErr) {
+            console.error(`Upload error for ${file.name}:`, uploadErr);
+            throw new Error(`Failed to upload file: ${file.name}`);
+          }
+        }
+
+        if (uploadedUrls.length > 0) {
+          uploadedFilesInfo.push({
+            question_id: questionId,
+            files: uploadedUrls
+          });
+        }
+      }
+
       // Prepare submission data
       const submissionData = {
         project_name: projectInfo.projectName,
@@ -84,11 +125,7 @@ export default function IntakeForm() {
         submitted_at: new Date().toISOString(),
         responses: formData,
         other_responses: otherText,
-        files_uploaded: Object.keys(files).map(key => ({
-          question_id: key,
-          file_count: files[key].length,
-          file_names: files[key].map(f => f.name)
-        }))
+        files_uploaded: uploadedFilesInfo
       };
 
       // Submit to API
@@ -104,10 +141,13 @@ export default function IntakeForm() {
         throw new Error('Failed to submit form');
       }
 
+      // Clear saved draft
+      localStorage.removeItem('intake-form-draft');
+
       // Redirect to thank you page
       router.push('/thank-you');
     } catch (err) {
-      setError('Failed to submit form. Please try again or contact oliver@coldlava.ai');
+      setError(err instanceof Error ? err.message : 'Failed to submit form. Please try again or contact oliver@coldlava.ai');
       console.error(err);
     } finally {
       setIsSubmitting(false);
