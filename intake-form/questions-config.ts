@@ -357,7 +357,7 @@ export const questions: Question[] = [
   // Timeline
   {
     id: "timeline_preference",
-    section: "Timeline & Budget",
+    section: "Timeline",
     question: "When do you need the CRM live?",
     type: "select",
     required: true,
@@ -370,62 +370,68 @@ export const questions: Question[] = [
   },
   {
     id: "timeline_specific",
-    section: "Timeline & Budget",
+    section: "Timeline",
     question: "If you have a specific deadline, what is it and why?",
     type: "textarea",
     required: false,
     placeholder: "e.g., Need by end of January for..."
   },
 
-  // Budget
-  {
-    id: "budget_range",
-    section: "Timeline & Budget",
-    question: "Budget range for this project",
-    type: "select",
-    required: true,
-    options: [
-      "Under £10,000",
-      "£10,000 - £15,000",
-      "£15,000 - £20,000",
-      "£20,000+",
-      "Flexible - depends on features"
-    ],
-    helpText: "This helps us tailor the solution to your investment level"
-  },
-  {
-    id: "budget_monthly",
-    section: "Timeline & Budget",
-    question: "Comfortable with monthly infrastructure costs of £70-120?",
-    type: "select",
-    required: true,
-    options: [
-      "Yes - expected for cloud hosting",
-      "Need to understand what this covers",
-      "Too high - need cheaper options",
-      "Not sure"
-    ],
-    helpText: "Covers hosting, database, e-signature, backups, SSL"
-  },
 
   // Success Criteria
   {
-    id: "success_criteria",
+    id: "success_main_problem",
     section: "Success Criteria",
-    question: "What would make this CRM a success for you?",
+    question: "What's the #1 biggest problem this CRM needs to solve for your business?",
     type: "textarea",
     required: true,
-    placeholder: "What's the #1 problem this needs to solve?",
-    helpText: "Be as specific as possible"
+    placeholder: "e.g., I'm losing track of deals across WhatsApp and spreadsheets...",
+    helpText: "Be specific - what's causing you the most pain right now?"
   },
   {
-    id: "success_features",
+    id: "success_daily_usage",
     section: "Success Criteria",
-    question: "Which features are MUST-HAVE vs NICE-TO-HAVE?",
+    question: "Describe your ideal daily workflow with the new CRM",
     type: "textarea",
     required: true,
-    placeholder: "MUST-HAVE: [list]\nNICE-TO-HAVE: [list]",
-    helpText: "This helps us prioritize if we need to phase the delivery"
+    placeholder: "Walk us through a typical day - what would you do in the CRM? What tasks would become easier?",
+    helpText: "Help us understand how you envision using this system every day"
+  },
+  {
+    id: "success_deal_lifecycle",
+    section: "Success Criteria",
+    question: "Walk through your ideal journey of a deal from start to finish",
+    type: "textarea",
+    required: true,
+    placeholder: "From first contact with client → closing the deal → post-deal management",
+    helpText: "What happens at each stage? Where do you need the CRM to help most?"
+  },
+  {
+    id: "success_must_have",
+    section: "Success Criteria",
+    question: "Which 3-5 features are absolutely MUST-HAVE for launch?",
+    type: "textarea",
+    required: true,
+    placeholder: "List only the features you can't go live without",
+    helpText: "If we had to cut features to hit your deadline, what can't be touched?"
+  },
+  {
+    id: "success_nice_to_have",
+    section: "Success Criteria",
+    question: "Which features would be NICE-TO-HAVE but could wait for v2?",
+    type: "textarea",
+    required: false,
+    placeholder: "Features that would be great but aren't deal-breakers",
+    helpText: "These could be added in future updates after initial launch"
+  },
+  {
+    id: "success_measurement",
+    section: "Success Criteria",
+    question: "How will you measure success 3 months after launch?",
+    type: "textarea",
+    required: true,
+    placeholder: "e.g., Closing 20% more deals, saving 10 hours per week, zero missed follow-ups...",
+    helpText: "What specific outcomes would prove this was worth the investment?"
   },
 
   // Additional Info
