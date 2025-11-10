@@ -11,6 +11,12 @@ export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
 
+    // Merge other_responses into responses for complete data
+    const completeResponses = {
+      ...data.responses,
+      _other_responses: data.other_responses || {}
+    };
+
     // Insert into Supabase
     const { data: inserted, error } = await supabase
       .from('intake_responses')
@@ -19,7 +25,7 @@ export async function POST(request: NextRequest) {
           project_name: data.project_name,
           client_name: data.client_name,
           submitted_at: data.submitted_at,
-          responses: data.responses,
+          responses: completeResponses,
           files_info: data.files_uploaded,
           status: 'new'
         }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import { questions, sections, projectInfo } from '@/questions-config';
 import { useRouter } from 'next/navigation';
 
@@ -11,6 +11,38 @@ export default function IntakeForm() {
   const [otherText, setOtherText] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [currentSection, setCurrentSection] = useState<string>('');
+
+  // Auto-save to localStorage
+  useEffect(() => {
+    const savedData = localStorage.getItem('intake-form-draft');
+    if (savedData) {
+      try {
+        const parsed = JSON.parse(savedData);
+        setFormData(parsed.formData || {});
+        setOtherText(parsed.otherText || {});
+      } catch (e) {
+        console.error('Failed to load saved draft');
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    const draftData = {
+      formData,
+      otherText,
+      savedAt: new Date().toISOString()
+    };
+    localStorage.setItem('intake-form-draft', JSON.stringify(draftData));
+  }, [formData, otherText]);
+
+  // Calculate completion percentage
+  const requiredQuestions = questions.filter(q => q.required);
+  const completedRequired = requiredQuestions.filter(q => {
+    const value = formData[q.id];
+    return value && (Array.isArray(value) ? value.length > 0 : value.toString().trim() !== '');
+  });
+  const completionPercentage = Math.round((completedRequired.length / requiredQuestions.length) * 100);
 
   const handleInputChange = (questionId: string, value: any) => {
     setFormData(prev => ({
@@ -234,6 +266,65 @@ export default function IntakeForm() {
 
   return (
     <div>
+      {/* Progress Bar - Fixed at top */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-[var(--surface)] border-b border-[var(--border)] shadow-lg">
+        <div className="max-w-4xl mx-auto px-4 py-3">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm font-medium text-white">Form Progress</span>
+            <span className="text-sm font-bold text-[var(--accent)]">{completionPercentage}%</span>
+          </div>
+          <div className="w-full bg-[var(--background)] rounded-full h-2 overflow-hidden">
+            <div
+              className="h-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-alt)] transition-all duration-500 ease-out"
+              style={{ width: `${completionPercentage}%` }}
+            />
+          </div>
+          <p className="text-xs text-[var(--text-muted)] mt-1">
+            {completedRequired.length} of {requiredQuestions.length} required fields completed
+            {completionPercentage > 0 && " • Auto-saved ✓"}
+          </p>
+        </div>
+      </div>
+
+      {/* Spacer for fixed progress bar */}
+      <div className="h-24" />
+
+      {/* Section Navigation - Desktop only */}
+      <div className="hidden lg:block fixed left-4 top-32 z-40 w-48">
+        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-lg p-3 shadow-lg">
+          <h3 className="text-xs font-bold text-[var(--accent)] mb-2 uppercase tracking-wide">Quick Navigation</h3>
+          <div className="space-y-1 max-h-[calc(100vh-200px)] overflow-y-auto">
+            {sections.map((section, idx) => {
+              const phase = section.includes('Phase 1') ? '1' : section.includes('Phase 2') ? '2' : section.includes('Phase 3') ? '3' : '';
+              const shortName = section.replace(/Phase \d: /, '').replace(/ \(.*\)/, '');
+              const questionsInSection = questions.filter(q => q.section === section);
+              const completedInSection = questionsInSection.filter(q => {
+                const value = formData[q.id];
+                return value && (Array.isArray(value) ? value.length > 0 : value.toString().trim() !== '');
+              });
+              const sectionComplete = questionsInSection.length > 0 && completedInSection.length === questionsInSection.length;
+
+              return (
+                <button
+                  key={section}
+                  onClick={() => {
+                    const element = document.getElementById(`section-${idx}`);
+                    element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }}
+                  className="w-full text-left px-2 py-1.5 rounded text-xs hover:bg-[var(--accent)]/10 transition-colors flex items-center gap-2"
+                >
+                  {phase && <span className="text-[var(--accent)] font-bold">P{phase}</span>}
+                  <span className={sectionComplete ? 'text-[var(--accent)]' : 'text-[var(--text-muted)]'}>
+                    {shortName}
+                  </span>
+                  {sectionComplete && <span className="ml-auto text-[var(--accent)]">✓</span>}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
       {/* Intro */}
       <div className="section-card">
         <h2 className="text-3xl font-bold text-white mb-4">
