@@ -5,6 +5,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Project Intake Form | Cold Lava",
   description: "Client project intake questionnaire",
+  icons: {
+    icon: '/favicon.png',
+  },
 };
 
 export default function RootLayout({
