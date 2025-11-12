@@ -325,8 +325,8 @@ export default function IntakeForm() {
 
   return (
     <div>
-      {/* Progress Bar - Fixed at top */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-[var(--surface)] border-b border-[var(--border)] shadow-lg">
+      {/* Progress Bar - Sticky below header */}
+      <div className="sticky top-[98px] left-0 right-0 z-40 bg-[var(--surface)] border-b border-[var(--border)] shadow-lg">
         <div className="max-w-4xl mx-auto px-4 py-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-white">Form Progress</span>
@@ -344,9 +344,6 @@ export default function IntakeForm() {
           </p>
         </div>
       </div>
-
-      {/* Spacer for fixed progress bar */}
-      <div className="h-24" />
 
       {/* Section Navigation - Desktop only */}
       <div className="hidden lg:block fixed left-4 top-32 z-40 w-48">

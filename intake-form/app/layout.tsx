@@ -20,7 +20,7 @@ export default function RootLayout({
       <body>
         <div className="min-h-screen bg-[var(--background)]">
           {/* Header */}
-          <header className="cold-lava-gradient shadow-lg border-b-2 border-[var(--accent)]/30">
+          <header className="sticky top-0 z-50 cold-lava-gradient shadow-lg border-b-2 border-[var(--accent)]/30">
             <div className="max-w-4xl mx-auto px-4 py-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
